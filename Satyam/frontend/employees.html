@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees - Hospital Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏥 Hospital MS</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="employees.html" class="active">Employees</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>Employees Management</h2>
+            <button class="btn btn-primary" onclick="showAddModal('employee')">+ Add Employee</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchEmployee" placeholder="Search employees..." onkeyup="searchTable('employeesTableBody', this.value)">
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                        <th>Department</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeesTableBody">
+                    <tr><td colspan="7" class="loading">Loading data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Employee -->
+    <div id="employeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('employee')">&times;</span>
+            <h3 id="employeeModalTitle">Add Employee</h3>
+            <form id="employeeForm" onsubmit="handleEmployeeSubmit(event)">
+                <input type="hidden" id="employeeId">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="employeeName" required placeholder="Enter employee's full name">
+                </div>
+                <div class="form-group">
+                    <label>Position:</label>
+                    <input type="text" id="employeePosition" required placeholder="e.g., Nurse, Receptionist">
+                </div>
+                <div class="form-group">
+                    <label>Department:</label>
+                    <input type="text" id="employeeDepartment" required placeholder="e.g., Emergency, Admin">
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="tel" id="employeePhone" required placeholder="Enter contact number">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="employeeEmail" required placeholder="employee@hospital.com">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Employee</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('employee')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.onload = function() {
+            loadEmployees();
+        };
+    </script>
+</body>
+</html>

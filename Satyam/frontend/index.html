@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏥 Hospital MS</h1>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Dashboard</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="employees.html">Employees</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <h2>Hospital Dashboard</h2>
+        <div class="stats-grid">
+            <div class="stat-card blue">
+                <div class="stat-icon">👨‍⚕️</div>
+                <h3>Total Doctors</h3>
+                <p class="stat-number" id="totalDoctors">Loading...</p>
+            </div>
+            <div class="stat-card green">
+                <div class="stat-icon">🤒</div>
+                <h3>Total Patients</h3>
+                <p class="stat-number" id="totalPatients">Loading...</p>
+            </div>
+            <div class="stat-card orange">
+                <div class="stat-icon">👥</div>
+                <h3>Total Employees</h3>
+                <p class="stat-number" id="totalEmployees">Loading...</p>
+            </div>
+            <div class="stat-card purple">
+                <div class="stat-icon">📅</div>
+                <h3>Active Today</h3>
+                <p class="stat-number" id="activeToday">24</p>
+            </div>
+        </div>
+
+        <div class="quick-actions">
+            <h3>Quick Actions</h3>
+            <div class="action-buttons">
+                <a href="doctors.html" class="action-btn">Manage Doctors</a>
+                <a href="patients.html" class="action-btn">Manage Patients</a>
+                <a href="employees.html" class="action-btn">Manage Employees</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.onload = function() {
+            loadDashboardStats();
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctors - Hospital Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏥 Hospital MS</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="doctors.html" class="active">Doctors</a></li>
+                <li><a href="patients.html">Patients</a></li>
+                <li><a href="employees.html">Employees</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>Doctors Management</h2>
+            <button class="btn btn-primary" onclick="showAddModal('doctor')">+ Add Doctor</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchDoctor" placeholder="Search doctors..." onkeyup="searchTable('doctorsTableBody', this.value)">
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Specialization</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="doctorsTableBody">
+                    <tr><td colspan="6" class="loading">Loading data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Doctor -->
+    <div id="doctorModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('doctor')">&times;</span>
+            <h3 id="doctorModalTitle">Add Doctor</h3>
+            <form id="doctorForm" onsubmit="handleDoctorSubmit(event)">
+                <input type="hidden" id="doctorId">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="doctorName" required placeholder="Enter doctor's full name">
+                </div>
+                <div class="form-group">
+                    <label>Specialization:</label>
+                    <input type="text" id="doctorSpecialization" required placeholder="e.g., Cardiology">
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="tel" id="doctorPhone" required placeholder="Enter contact number">
+                </div>
+                <div class="form-group">
+                    <label>Email:</label>
+                    <input type="email" id="doctorEmail" required placeholder="doctor@hospital.com">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Doctor</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('doctor')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.onload = function() {
+            loadDoctors();
+        };
+    </script>
+</body>
+</html>

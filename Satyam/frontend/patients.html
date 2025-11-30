@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patients - Hospital Management System</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="logo">🏥 Hospital MS</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="patients.html" class="active">Patients</a></li>
+                <li><a href="employees.html">Employees</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="header-section">
+            <h2>Patients Management</h2>
+            <button class="btn btn-primary" onclick="showAddModal('patient')">+ Add Patient</button>
+        </div>
+
+        <div class="search-box">
+            <input type="text" id="searchPatient" placeholder="Search patients..." onkeyup="searchTable('patientsTableBody', this.value)">
+        </div>
+
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Phone</th>
+                        <th>Disease</th>
+                        <th>Admission Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="patientsTableBody">
+                    <tr><td colspan="8" class="loading">Loading data...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal for Add/Edit Patient -->
+    <div id="patientModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('patient')">&times;</span>
+            <h3 id="patientModalTitle">Add Patient</h3>
+            <form id="patientForm" onsubmit="handlePatientSubmit(event)">
+                <input type="hidden" id="patientId">
+                <div class="form-group">
+                    <label>Name:</label>
+                    <input type="text" id="patientName" required placeholder="Enter patient's full name">
+                </div>
+                <div class="form-group">
+                    <label>Age:</label>
+                    <input type="number" id="patientAge" required min="1" max="120" placeholder="Enter age">
+                </div>
+                <div class="form-group">
+                    <label>Gender:</label>
+                    <select id="patientGender" required>
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Phone:</label>
+                    <input type="tel" id="patientPhone" required placeholder="Enter contact number">
+                </div>
+                <div class="form-group">
+                    <label>Disease/Condition:</label>
+                    <input type="text" id="patientDisease" required placeholder="Enter diagnosis">
+                </div>
+                <div class="form-group">
+                    <label>Admission Date:</label>
+                    <input type="date" id="patientAdmissionDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Save Patient</button>
+                    <button type="button" class="btn btn-secondary" onclick="closeModal('patient')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+    <script>
+        window.onload = function() {
+            loadPatients();
+        };
+    </script>
+</body>
+</html>
